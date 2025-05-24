@@ -36,7 +36,7 @@ main().then((res)=>{
 
 const init = async()=>{
        await Listing.deleteMany({});
-       let ownerId = new mongoose.Types.ObjectId("682c67268badcd9e327e145c");
+       let ownerId = new mongoose.Types.ObjectId("6831e970d3a39afacdc73f19");
        const newData=[];
        for(item of initdata.data){
        let response=await geocodingClient.forwardGeocode({
