@@ -22,6 +22,11 @@ const {redirectUrl,validateUser}=require('../utils/middleware.js');
 //Requiring user controller
 const userController=require("../controller/users.js");
 
+// Add a root route redirect
+router.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
 router.route("/signup")
 .get(wrapAsync(userController.gsignup))
 .post(validateUser,wrapAsync(userController.psignup));
