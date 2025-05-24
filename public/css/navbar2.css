@@ -1,0 +1,50 @@
+.navbar-nav a {
+    all: unset !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    margin: 0.5rem !important;
+}
+
+.navbar-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0px !important;
+}
+
+.filter {      
+    text-align: center !important;
+    opacity: 0.5 !important;
+    margin: 1rem !important;
+}
+
+.filter p {
+    font-size: small;
+}
+
+.tax-toggle {
+    margin: 1rem !important;
+    text-align: center !important;
+    border: 2px solid red !important;
+    border-radius: 0.5rem !important;
+    padding: 0.5rem !important;
+    margin-left: 10rem !important;
+    margin-top: 0rem !important;
+}
+
+.filter:hover {
+    opacity: 1 !important;
+}
+
+.fa-solid {
+    font-size: 2rem !important;
+}
+
+.tax {
+    display: none;
+}
+
+.container-fluid {
+    margin: 0px !important;
+}

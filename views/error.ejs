@@ -1,0 +1,7 @@
+<%- layout("/layouts/boilerplate") %>
+<div class="alert alert-danger col-8 offset-2 mt-5"     role="alert">
+  <h2><%=err.message%></h2>
+  <form action="/listings" method="get">
+    <button class="btn btn-dark" type="submit">home</button>
+  </form>
+</div>

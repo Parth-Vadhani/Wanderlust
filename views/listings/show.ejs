@@ -1,0 +1,119 @@
+<%-layout("/layouts/boilerplate")%>
+<script>
+              let maptoken="<%=process.env.MAP_TOKEN%>";
+              const listing=<%-JSON.stringify(listing)%>;
+             
+</script>
+       <body>
+              <div class="row">
+                     <div class="col-8 offset-0.9">
+                            <h1 style="text-align: center;" class="mt-5 mb-5"> <b><%= listing.title %></b></h1>
+                     </div>
+                            <div class="card1 col-6 offset-0.9" >
+                                   <img src="<%=listing.image.url%>" class="card-img-top show-image" alt="Listing Image">
+                                   <div class="card-body">
+                                          <h5 style="text-align: center;"><b>Owned by <%=listing.owner.username%></b></h5>
+                                          <p class="card-text">
+                                                 <p>$ <%= listing.price.toLocaleString("en-US") %></p>
+                                                 <p><%= listing.description %> </p>
+                                                 <p><%= listing.location %> </p>
+                                                 <p><%= listing.country %> </p>
+                                          </p>
+
+                                          
+                                   </div>
+                            </div>
+              </div>
+              
+              <%if(currUser && currUser.equals(listing.owner._id)){%>
+              <div class="btns mb-3">
+
+                     <form action="/listings/<%=listing._id %>/edit" method="get" style="display: inline-block;">
+                            <button type="submit" class="btn btn-dark" style="width: 10rem;">edit listing</button>
+                     </form>
+                     <form action="/listings/<%=listing._id %>?_method=DELETE" method="post" style="display: inline-block;">
+                            <button type="submit" class="btn btn-dark">delete</button>
+                     </form>
+              </div>
+              <%}%>
+              <%if(currUser){%>
+              <div class="col-10 offset-1 mb-3 mt-3" >
+                     <hr>
+                     <h2 style="text-align: center;">
+                            Leave a Review
+                     </h2>
+                     <form action="/listings/<%=listing.id%>/reviews" method="POST" novalidate class="needs-validation">
+                                   
+                     <label for="review[rating]" class="form-label">Rating :</label>
+                           <div class="mt-3 mb-3">
+                            <fieldset class="starability-slot">
+                                   <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                                   <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                                   <label for="first-rate1" title="Terrible">1 star</label>
+                                   <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                                   <label for="first-rate2" title="Not good">2 stars</label>
+                                   <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                                   <label for="first-rate3" title="Average">3 stars</label>
+                                   <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                                   <label for="first-rate4" title="Very good">4 stars</label>
+                                   <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                                   <label for="first-rate5" title="Amazing">5 stars</label>
+                            </fieldset>
+                            </div>
+                           <br>
+                            <div class="mb-3 mt-3">
+                                   <label for="review[comment]" class="form-label">Comment :</label>
+                                   <textarea name="review[comment]" cols="10" rows="5" class="form-control" required></textarea>
+                                   <div class="invalid-feedback">
+                                          Please Add Comments For Review!
+                                   </div>
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-dark mt-3 mb-3">submit</button>
+                     </form>
+                     <hr>
+              </div>
+              
+            
+            
+              <%}%>
+              <%if(listing.reviews.length>0){%>
+              <div class="heading col-8 offset-2" >
+                            <h3 class="mt-3 mb-3" style="text-align: center;"> All the Reviews !</h3>
+                     </div>
+              <div class="review col-10 offset-1">
+                     
+                     <%for(review of listing.reviews){%>
+                     <div class="listing-card mt-3 ms-4">
+                            <div class="card" style="width: 25rem;">
+                     <div class="card-body">
+                     <h4 class="card-title"><%=review.author.username%></h4>
+                     <h5 class="card-text starability-result " data-rating="<%=review.rating%>">
+                     </h5>
+                     <h6 class="x"><%=review.email%></h6>
+                     <p class="card-text"><%=review.comment%></p>     
+
+                     <%if(currUser){%>
+                     <form action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE" method="post">
+                            <button type="submit" class="btn btn-dark bt4n-sm">delete</button>
+                     </form>  
+                     <%}%>  
+                     </div>
+                     </div>
+                     </div>
+                     <%}%>
+                     
+              </div>
+              <%}%>
+              <hr>
+              <div class="col-8 offset-1 mb-3 mt-3 " >
+                     <h2><b>Where You'll be :</b></h2>
+                     <div id="map">
+
+                     </div>
+              </div>
+              <hr>
+              
+</div>
+       <script src="/js/map.js"></script>
+ </body>

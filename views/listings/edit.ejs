@@ -1,0 +1,70 @@
+<% layout("/layouts/boilerplate") %>
+
+       <body>
+              <div class="row mt-3">
+                     <div class="col-8 offset-1.5">
+                            <h2 style="margin-top: 1rem;">Edit This Listing !</h2>
+
+                            <form action="/listings/<%=listing._id%>/editing?_method=PUT" method="post" novalidate
+                                   class="needs-validation" enctype="multipart/form-data">
+
+                                   <div class="mb-3">
+                                          <label class="form-label" for="location">Enter Location :</label>
+                                          <input class="form-control" type="text" name="listing[location]" id="location"
+                                                 value="<%=listing.location%>" required>
+                                          <div class="valid-feedback">Looks Good !</div>
+                                          <div class="invalid-feedback">Please Enter Location !</div>
+                                   </div>
+                                   <br>
+
+                                   <div class="mb-3">
+                                          <label class="form-label" for="title">Enter Title :</label>
+                                          <input class="form-control" type="text" name="listing[title]" id="title"
+                                                 value="<%=listing.title%>" required>
+                                          <div class="valid-feedback">Looks Good !</div>
+                                          <div class="invalid-feedback">Please Enter Title !</div>
+                                   </div>
+                                   <br>
+                                   <div class="card1 col-6  mb-3 mt-3" >
+                                          <h5><b>Original Listing Image :</b></h5>
+                                          <img src="<%=listing.image.url%>" class="card-img-top show-image"  alt="listing image not found">
+                                   </div>
+                                   <div class="mb-3">
+                                          <label class="form-label" for="image">Upload New Image :</label>
+                                          <input class="form-control" type="file" name="listing[image]" id="image"
+                                                 value="<%=listing.image.filename%>">
+                                          <div class="valid-feedback">Looks Good !</div>
+                                          <div class="invalid-feedback">Please Upload Image !</div>
+                                   </div>
+                                   <br>
+                                   <div class="row">
+                                          <div class="mb-3 col-md-4">
+                                                 <label class="form-label" for="country">Enter Country :</label>
+                                                 <input class="form-control" type="text" name="listing[country]"
+                                                        id="country" value="<%=listing.country%>" required>
+                                                 <div class="valid-feedback">Looks Good !</div>
+                                                 <div class="invalid-feedback">Please Enter Country !</div>
+                                          </div>
+
+                                          <div class="mb-3 col-md-8">
+                                                 <label class="form-label" for="price">Enter Price :</label>
+                                                 <input class="form-control" type="text" name="listing[price]"
+                                                        id="price" value="<%=listing.price%>" required>
+                                                 <div class="valid-feedback">Looks Good !</div>
+                                                 <div class="invalid-feedback">Please Enter Price !</div>
+                                          </div>
+                                   </div>
+                                   <br>
+                                   <div class="mb-3">
+                                          <label class="form-label" for="description">Enter Description :</label>
+                                          <textarea class="form-control" name="listing[description]" id="description"
+                                    cols="20" rows="10" required><%=listing.description%></textarea>
+                                          <div class="valid-feedback">Looks Good !</div>
+                                          <div class="invalid-feedback">Please Enter Description !</div>
+                                   </div>
+                                   <br>
+                                   <button type="submit" class="btn btn-dark mb-3">Edit</button>
+                            </form>
+                     </div>
+              </div>
+       </body>
