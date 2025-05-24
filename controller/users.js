@@ -11,7 +11,7 @@ module.exports.psignup=async(req,res,next)=>{
        try{
               let {username , email , password}=req.body.user;
               const user1=new User({username,email});
-              const registeredUser=await User.register(user1.password);
+              const registeredUser=await User.register(user1, password);
               console.log(registeredUser);
               req.login(registeredUser,(err)=>{
                      if(err){
