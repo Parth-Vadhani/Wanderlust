@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 //Defining Port
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 //using mongodb url
 const urldb=process.env.ATLAS_URL;
