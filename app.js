@@ -84,6 +84,7 @@ const ExpressError=require("./utils/expressError");
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+const sitemapRouter = require("./routes/sitemap.js");
 
 //For running server on particular port
 app.listen(port, () => {
@@ -122,12 +123,11 @@ app.use((req,res,next)=>{
     next();
 });
 
-
 //Middleware that would redirect particular request to the file containing that routes
 app.use("/",userRouter);
 app.use("/listings" , listingsRouter);
 app.use("/listings/:id/reviews",reviewsRouter);
-
+app.use(sitemapRouter);
 
 //This will get all the request
  app.all("/*splat",(req,res,next)=>{
